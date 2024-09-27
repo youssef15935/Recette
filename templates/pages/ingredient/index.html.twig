@@ -4,10 +4,14 @@
 
 {% block body %}
 <div class="container mt-4 ">
+    {% if ingredients.items is not same as([]) %}
     <h1>Mes Ingredients</h1>
-    
+    <a  href="{{path('ingredient.new')}}" class="btn btn-primary mt-4">Créer un Ingredient</a>
+   
     <div class="count d-flex justify-content-center mt-4">
-       Il y a  {{ ingredients.getTotalItemCount }} ingredients au total
+       Il y a  
+       {{ ingredients.getTotalItemCount  }} 
+       ingredients au total
     </div>
     
     <table class="table table-hover mt-4">
@@ -17,6 +21,8 @@
       <th scope="col">Nom</th>
       <th scope="col">prix</th>
       <th scope="col">Date de creation</th>
+      <th scope="col">Edition</th>
+      <th scope="col">suppression</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +33,8 @@
         <td><p>{{  ingredient.name}}</p></td>
         <td>{{ ingredient.price }}</td>
         <td>{{ ingredient.createdAt | date('d/m/Y') }}</td>
+        <td><a href ='{{path('ingredient.edit',{id:ingredient.id})}}'class="btn btn-info">Modifier</a></td>
+        <td><a href ='{{path('ingredient.delete',{id:ingredient.id})}}'class="btn btn-warning">supprimer</a></td>
     </tr>
             
         
@@ -37,8 +45,9 @@
  <div class="navigation d-flex justify-content-center mt-4">
     {{ knp_pagination_render(ingredients) }}
 </div>
+{% else %}
+    il n a pas d'ingredients 
     
-    
-
+{% endif %}
 </div>
 {% endblock %}
