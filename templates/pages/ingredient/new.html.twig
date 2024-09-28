@@ -2,12 +2,6 @@
 {% block body %}
 
 <div class="container">
- {% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
-
     <h1 class="mt-4">Creation de l'ingredient</h1>
 {{form(form)}}
 </div>
